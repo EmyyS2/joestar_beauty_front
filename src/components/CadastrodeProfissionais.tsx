@@ -20,6 +20,7 @@ const Cadastro = () => {
     const [cep, setCep] = useState<string>("");
     const [complemento, setComplemento] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+    const [salario, setSalario]= useState<string>("");
     const[erro, setErro]=useState<string>("")
 
 
@@ -62,7 +63,8 @@ const Cadastro = () => {
             bairro: bairro,
             cep: cep,
             complemento: complemento,
-            password: password
+            password: password,
+            salario:salario
         }
 
         console.log(dados)
@@ -119,6 +121,9 @@ const Cadastro = () => {
         if(e.target.name=="complemento"){
             setComplemento(e.target.value);
         }
+        if(e.target.name=="salario"){
+            setSalario(e.target.value);
+        }
     }
 
     return (
@@ -128,7 +133,7 @@ const Cadastro = () => {
                 <div className='container'>
                     <div className='card'>
                         <div className='card-body'>
-                            <h5 className='card-title'>Cadastrar Clientes✩</h5>
+                            <h5 className='card-title'>Cadastro de Profissionais</h5>
                             <form onSubmit={cadastrarUsuario} className='row g-3'>
                                 <div className='col-6'>
                                     <label htmlFor="nome" className='form-label'>Nome</label>
@@ -181,6 +186,10 @@ const Cadastro = () => {
                                 <div className='col-6'>
                                     <label htmlFor="complemento" className='form-label'>Complemento</label>
                                     <input type="text" name='complemento' className='form-control' required onChange={handleState} />
+                                </div>
+                                <div className='col-6'>
+                                    <label htmlFor="salario" className='form-label'>salario</label>
+                                    <input type="text" name='salario' className='form-control' required onChange={handleState} />
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="password" className='form-label'>Senha</label>

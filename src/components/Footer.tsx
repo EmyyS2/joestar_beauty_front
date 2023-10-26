@@ -6,7 +6,7 @@ const Footer =()=>{
     return (
         <footer className={styles.footer}>
             <p>
-                <span>Buscador de CEP</span> @SENAI
+                <span>Cadastro de Clientes</span> @SENAI
             </p>
         </footer>
     );

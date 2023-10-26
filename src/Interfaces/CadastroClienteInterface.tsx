@@ -1,15 +1,15 @@
 export interface CadastroInterface{
-    id:number;
+id:number;
     nome:string;
-    celular:number;
+    celular:string;
     email:string;
     cpf:string;
-    dataDeNascimento:Date;
+    dataDeNascimento:string;
     cidade:string;
     estado:string;
     pais:string;
     rua:string;
-    numero:number;
+    numero:string;
     bairro:string;
     cep:string;
     complemento:string;
