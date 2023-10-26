@@ -10,7 +10,7 @@ const Cadastro = () => {
     const [celular, setCelular] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [cpf, setCpf] = useState<string>("");
-    const [dataDeNascimento, setDataDeNascimento] = useState<string>("")
+    const [dataNascimento, setDataNascimento] = useState<string>("")
     const [cidade, setCidade] = useState<string>("");
     const [estado, setEstado] = useState<string>("");
     const [pais, setPais] = useState<string>("");
@@ -53,7 +53,7 @@ const Cadastro = () => {
             email: email,
             celular:celular,
             cpf: cpf,
-            dataDeNascimento: dataDeNascimento,
+            dataNascimento: dataNascimento,
             cidade: cidade,
             estado: estado,
             pais: pais,
@@ -93,7 +93,7 @@ const Cadastro = () => {
             setCelular(e.target.value);
         }
         if (e.target.name==="dataDeNascimento"){
-            setDataDeNascimento(e.target.value);
+            setDataNascimento(e.target.value);
         }
         if (e.target.name=="cidade"){
             setCidade(e.target.value);
