@@ -4,7 +4,7 @@ id:number;
     celular:string;
     email:string;
     cpf:string;
-    dataDeNascimento:string;
+    dataNascimento:string;
     cidade:string;
     estado:string;
     pais:string;
@@ -13,5 +13,5 @@ id:number;
     bairro:string;
     cep:string;
     complemento:string;
-    passaword:string;
+    password:string;
 }

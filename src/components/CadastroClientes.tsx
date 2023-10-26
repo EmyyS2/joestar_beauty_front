@@ -66,7 +66,7 @@ const Cadastro = () => {
         }
 
         console.log(dados)
-        axios.post('http://10.137.9.131:8000/api/store', dados, {
+        axios.post('http://127.0.0.1:8000/api/clientes', dados, {
             headers:
                 { "Accept": "application/json", "Content-Type": "application/json" }
         }).then(function (response) {
