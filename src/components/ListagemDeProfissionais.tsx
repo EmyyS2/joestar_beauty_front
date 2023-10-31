@@ -24,7 +24,7 @@ const ListagemProfissional = () => {
 
         async function fetchData() {
             try {
-                const response = await axios.post('http://127.0.0.1:8000/api/buscarProficional/{nome}',
+                const response = await axios.post('http://127.0.0.1:8000/api/Profissional/nome',
                     { nome: pesquisa },
                     {
                         headers: {
@@ -90,7 +90,7 @@ const ListagemProfissional = () => {
                     </div>
                     <div className='card'>
                         <div className='card-body'>
-                            <h5 className='card-title'> Listagem de Proficional</h5>
+                            <h5 className='card-title'> Listagem de Profissional</h5>
                             <table className='table table-hover'>
                                 <thead>
                                     <tr>
@@ -99,13 +99,7 @@ const ListagemProfissional = () => {
                                         <th>CPF</th>
                                         <th>E-mail</th>
                                         <th>Data de Nascimento</th>
-                                        <th>Cidade</th>
-                                        <th>Estado</th>
-                                        <th>celular</th>
-                                        <th>pais</th>
-                                        <th>rua</th>
-                                        <th>numero</th>
-                                        <th>bairro</th>
+                                    
                                         <th>cep</th>
                                         <th>complemento</th>
                                         <th>salario</th>
@@ -123,13 +117,7 @@ const ListagemProfissional = () => {
                                             <td>{Profissional.email}</td>
                                             <td>{Profissional.cpf}</td>
                                             <td>{Profissional.dataNascimento}</td>
-                                            <td>{Profissional.cidade}</td>
-                                            <td>{Profissional.estado}</td>
-                                            <td>{Profissional.celular}</td>
-                                            <td>{Profissional.pais}</td>
-                                            <td>{Profissional.rua}</td>
-                                            <td>{Profissional.numero}</td>
-                                            <td>{Profissional.bairro}</td>
+                                            
                                             <td>{Profissional.cep}</td>
                                             <td>{Profissional.complemento}</td>
                                             <td>{Profissional.salario}</td>

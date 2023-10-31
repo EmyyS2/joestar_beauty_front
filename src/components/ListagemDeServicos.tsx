@@ -1,15 +1,14 @@
-import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import axios from 'axios';
-import Header from './Header';
+import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from 'react';
+
 import styles from '../template.module.css'
-import Footer from './Footer';
-import { CadastroInterface } from '../Interfaces/CadastroClienteInterface';
+
+import { CadastroInterface } from '../Interfaces/CadastroServicos';
 
 
+const ListagemDeServico = () => {
 
-const ListagemDeClientes = () => {
-
-    const [clientes, setClientes] = useState<CadastroInterface[]>([]);
+    const [servicos, setServicos] = useState<CadastroInterface[]>([]);
     const [pesquisa, setPesquisa] = useState<string>('');
     const [error, setError] = useState("");
 
@@ -25,7 +24,7 @@ const ListagemDeClientes = () => {
 
         async function fetchData() {
             try {
-                const response = await axios.post('http://127.0.0.1:8000/api/clientes/nome',
+                const response = await axios.post('http://127.0.0.1:8000/api/servico/nome',
                     { nome: pesquisa },
                     {
                         headers: {
@@ -35,7 +34,7 @@ const ListagemDeClientes = () => {
                     }
                 ).then(function (response) {
                     if(true == response.data.status){
-                        setClientes(response.data.data)
+                        setServicos(response.data.data)
                     }
                 }).catch(function (error) {
                     console.log(error)
@@ -50,9 +49,9 @@ const ListagemDeClientes = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/clientes/visualizar');
-                if(true === response.data.status){
-                    setClientes(response.data.data)
+                const response = await axios.get('http://127.0.0.1:8000/api/servico/visualizar');
+                if(true == response.data.status){
+                    setServicos(response.data.data)
                 }
             } catch (error) {
                 setError("Ocorreu um erro");
@@ -69,7 +68,7 @@ const ListagemDeClientes = () => {
             <main className={styles.main}>
                 <div className='container'>
 
-                    <div className='col-md mb-4'>
+                    <div className='col-md mb-3'>
                         <div className='card'>
                             <div className='card-body'>
                                 <h5 className='card-title'>
@@ -91,18 +90,16 @@ const ListagemDeClientes = () => {
                     </div>
                     <div className='card'>
                         <div className='card-body'>
-                            <h5 className='card-title'> Listagem de Clientes</h5>
+                            <h5 className='card-title'> Listagem de Serviços</h5>
                             <table className='table table-hover'>
                                 <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Nome</th>
-                                        <th>E-mail</th>
-                                        <th>CPF</th>
-                                        <th>Data de Nascimento</th>
-        
-                                        <th>cep</th>
-                                        <th>Complemento</th>
+                                        <th>Preco</th>
+                                        <th>Duracao</th>
+                                        <th>descricao</th>
+                               
                                         
                                         
                                         
@@ -110,16 +107,15 @@ const ListagemDeClientes = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {clientes.map(cliente => (
-                                        <tr key={cliente.id}>
-                                            <td>{cliente.id}</td>
-                                            <td>{cliente.nome}</td>
-                                            <td>{cliente.email}</td>
-                                            <td>{cliente.cpf}</td>
-                                            <td>{cliente.dataNascimento}</td>
-                                    
-                                            <td>{cliente.cep}</td>
-                                            <td>{cliente.complemento}</td>
+                                    {servicos.map(servicos => (
+                                        <tr key={servicos.id}>
+                                            <td>{servicos.id}</td>
+                                            <td>{servicos.nome}</td>
+                                            <td>{servicos.preco}</td>
+                                            <td>{servicos.descricao}</td>
+                                            <td>{servicos.duracao}</td>
+                                           
+                                          
                                             
                                             
                                             <td>
@@ -138,4 +134,4 @@ const ListagemDeClientes = () => {
         </div>
     );
 }
-export default ListagemDeClientes;
+export default ListagemDeServico;

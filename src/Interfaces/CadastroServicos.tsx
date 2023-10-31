@@ -1,6 +1,7 @@
 export interface CadastroInterface{
+    id:number,
     nome:string, 
-    descrição:string, 
-    duraçãoDoServiço:string,
-    preço:string
+    descricao:string, 
+    duracao:string,
+    preco:string
     }
