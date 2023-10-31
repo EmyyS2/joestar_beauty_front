@@ -27,6 +27,9 @@ const Header = () => {
                                 <li className="nav-item">
                                     <a href="/CadastroDeProfissionais" className="nav-link active">Cadastrar profissionais✩</a>
                                 </li>
+                                <li className="nav-item">
+                                    <a href="/CadastroDeServico" className="nav-link active">Cadastrar Serviços✩</a>
+                                </li>
 
 
 

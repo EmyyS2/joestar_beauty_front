@@ -4,7 +4,7 @@ import Header from './Header';
 import style from '../template.module.css'
 import Footer from './Footer';
 
-const Cadastro = () => {
+const CadastroClientes = () => {
 
     const [nome, setNome] = useState<string>("");
     const [celular, setCelular] = useState<string>("");
@@ -70,7 +70,7 @@ const Cadastro = () => {
             headers:
                 { "Accept": "application/json", "Content-Type": "application/json" }
         }).then(function (response) {
-            window.location.href = "/listagem"
+            window.location.href = "/listagemDeClientes"
         }).catch(function (error) {
             console.log(error);
         });
@@ -148,7 +148,7 @@ const Cadastro = () => {
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="dataDeNascimento" className='form-label'>Data de nascimento</label>
-                                    <input type="text" name='dataDeNascimento' className='form-control' required onChange={handleState} />
+                                    <input type="date" name='dataDeNascimento' className='form-control' required onChange={handleState} />
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="cidade" className='form-label'>Cidade</label>
@@ -199,4 +199,4 @@ const Cadastro = () => {
     );
 }
 
-export default Cadastro;
+export default CadastroClientes;

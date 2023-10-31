@@ -4,7 +4,7 @@ export interface CadastroInterface{
         celular:string;
         email:string;
         cpf:string;
-        dataDeNascimento:string;
+        dataNascimento:string;
         cidade:string;
         estado:string;
         pais:string;

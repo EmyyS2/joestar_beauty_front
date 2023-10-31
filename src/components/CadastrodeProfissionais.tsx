@@ -4,13 +4,13 @@ import Header from './Header';
 import style from '../template.module.css'
 import Footer from './Footer';
 
-const Cadastro = () => {
+const CadastroDeProfissionais = () => {
 
     const [nome, setNome] = useState<string>("");
     const [celular, setCelular] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [cpf, setCpf] = useState<string>("");
-    const [dataDeNascimento, setDataDeNascimento] = useState<string>("")
+    const [dataNascimento, setDataNascimento] = useState<string>("")
     const [cidade, setCidade] = useState<string>("");
     const [estado, setEstado] = useState<string>("");
     const [pais, setPais] = useState<string>("");
@@ -54,7 +54,7 @@ const Cadastro = () => {
             email: email,
             celular:celular,
             cpf: cpf,
-            dataDeNascimento: dataDeNascimento,
+            dataNascimento: dataNascimento,
             cidade: cidade,
             estado: estado,
             pais: pais,
@@ -72,7 +72,7 @@ const Cadastro = () => {
             headers:
                 { "Accept": "application/json", "Content-Type": "application/json" }
         }).then(function (response) {
-            window.location.href = "/listagem"
+            window.location.href = "/listagemDeProfissionais"
         }).catch(function (error) {
             console.log(error);
         });
@@ -94,8 +94,8 @@ const Cadastro = () => {
         if (e.target.name==="celular"){
             setCelular(e.target.value);
         }
-        if (e.target.name==="dataDeNascimento"){
-            setDataDeNascimento(e.target.value);
+        if (e.target.name==="DataNascimento"){
+            setDataNascimento(e.target.value);
         }
         if (e.target.name=="cidade"){
             setCidade(e.target.value);
@@ -152,8 +152,8 @@ const Cadastro = () => {
                                     <input type="text" name='cpf' className='form-control' required onChange={handleState} />
                                 </div>
                                 <div className='col-6'>
-                                    <label htmlFor="dataDeNascimento" className='form-label'>Data de nascimento</label>
-                                    <input type="text" name='dataDeNascimento' className='form-control' required onChange={handleState} />
+                                    <label htmlFor="dataNascimento" className='form-label'>Data de nascimento</label>
+                                    <input type="text" name='dataNascimento' className='form-control' required onChange={handleState} />
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="cidade" className='form-label'>Cidade</label>
@@ -189,7 +189,7 @@ const Cadastro = () => {
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="salario" className='form-label'>salario</label>
-                                    <input type="text" name='salario' className='form-control' required onChange={handleState} />
+                                    <input type="decimal" name='salario' className='form-control' required onChange={handleState} />
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="password" className='form-label'>Senha</label>
@@ -208,4 +208,4 @@ const Cadastro = () => {
     );
 }
 
-export default Cadastro;
+export default CadastroDeProfissionais;
