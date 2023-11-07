@@ -70,7 +70,7 @@ const CadastroClientes = () => {
             headers:
                 { "Accept": "application/json", "Content-Type": "application/json" }
         }).then(function (response) {
-            window.location.href = "/listagemDeClientes"
+          window.location.href = "/listagemDeClientes"
         }).catch(function (error) {
             console.log(error);
         });

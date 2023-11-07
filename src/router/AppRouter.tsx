@@ -4,7 +4,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CadastroDeClientes from "../components/CadastroClientes";
 import CadastroDeProfissionais from "../components/CadastrodeProfissionais";
 import CadastroServico from "../components/CadastrodeSevicos";
-import ListagemDeClientes from "../components/Listagem";
+import EditarClientes from "../components/editarClientes";
+import EditarProfissional from "../components/editardosProfissionais";
+import EditarServicos from "../components/editarServicos";
+import ListagemDeClientes from "../components/ListagemDeClientes";
 import ListagemProfissional from "../components/ListagemDeProfissionais";
 import ListagemDeServico from "../components/ListagemDeServicos";
 
@@ -18,7 +21,10 @@ const AppRoute = () => {
                 <Route path="CadastroDeServicos" element={<CadastroServico/>} />
                 <Route path="ListagemDeClientes" element={<ListagemDeClientes/>} />
                 <Route path="ListagemDeProfissional" element={<ListagemProfissional/>} />
-                <Route path="ListagemServiço" element={<ListagemDeServico/>} />
+                <Route path="ListagemServico" element={<ListagemDeServico/>} />
+                <Route path="/EditarClientes/:id" element={<EditarClientes />}/>
+                <Route path="/EditarProfissionais/:id" element={<EditarProfissional />}/>
+                <Route path="/EditarServico/:id" element={<EditarServicos />}/>
             </Routes>
         </BrowserRouter>
     );

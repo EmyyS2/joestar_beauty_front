@@ -4,6 +4,7 @@ import Header from './Header';
 import styles from '../template.module.css'
 import Footer from './Footer';
 import { CadastroInterface } from '../Interfaces/CadastroClienteInterface';
+import { Link } from 'react-router-dom';
 
 
 
@@ -123,7 +124,7 @@ const ListagemDeClientes = () => {
                                             
                                             
                                             <td>
-                                                <a href="#" className='btn btn-primary btn-sm'>Editar</a>
+                                            <Link to={"/EditarClientes/" + cliente.id} className='btn btn-primary btn-sm'>Editar</Link>
                                                 <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
                                             </td>
                                         </tr>

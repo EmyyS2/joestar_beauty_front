@@ -4,6 +4,7 @@ import Header from './Header';
 import styles from '../template.module.css'
 import Footer from './Footer';
 import { CadastroInterface } from '../Interfaces/CadastroProfissionalInterface';
+import { Link } from 'react-router-dom';
 
 
 const ListagemProfissional = () => {
@@ -124,7 +125,7 @@ const ListagemProfissional = () => {
                                             
                                             
                                             <td>
-                                                <a href="#" className='btn btn-primary btn-sm'>Editar</a>
+                                            <Link to={"/EditarProfissionais/" + Profissional.id} className='btn btn-primary btn-sm'>Editar</Link>
                                                 <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
                                             </td>
                                         </tr>

@@ -4,6 +4,7 @@ import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from 'r
 import styles from '../template.module.css'
 
 import { CadastroInterface } from '../Interfaces/CadastroServicos';
+import { Link } from 'react-router-dom';
 
 
 const ListagemDeServico = () => {
@@ -119,7 +120,7 @@ const ListagemDeServico = () => {
                                             
                                             
                                             <td>
-                                                <a href="#" className='btn btn-primary btn-sm'>Editar</a>
+                                            <Link to={"/EditarServico/" + servicos.id} className='btn btn-primary btn-sm'>Editar</Link>
                                                 <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
                                             </td>
                                         </tr>
