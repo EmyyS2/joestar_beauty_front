@@ -6,30 +6,28 @@ import Footer from "./Footer";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-const RedefinirSenha = () => {
+const redefinirProfissional = () => {
     const [email, setEmail] = useState<string>("");
 
-    const parametros = useParams();
+   const parametros = useParams();
 
-    const redefinir = (e: FormEvent) => {
-        e.preventDefault();
+   const redefinir=(e:FormEvent)=>{
+    e.preventDefault();
 
-        const dados = {
-            email: email
+    const dados={
+        email: email
         }
-        axios.post("http://127.0.0.1:8000/api/clientes/senha/redefinir", dados,
+        axios.post("http://127.0.0.1:8000/api/'Profissional/senha/redefinir'", dados,
             {
                 headers: {
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 }
             }).then(function (response) {
-                window.location.href = "/ListagemDeClientes";
+                window.location.href = "/ListagemDeProfissional";
             }).catch(function (error) {
                 console.log('Ocorreu um erro ao atualizar sua senha');
             });
-
-
     }
     useEffect(() => {
         async function fetchData() {
@@ -47,12 +45,6 @@ const RedefinirSenha = () => {
     }, []);
 
 
-    const handleState = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.name === "email") {
-            setEmail(e.target.value);
-
-        }
-    }
     return (
         <div>
             <Header />
@@ -77,6 +69,6 @@ const RedefinirSenha = () => {
                 <Footer />
         </div>
     );
-}
+    }
 
-export default RedefinirSenha;
+export default redefinirProfissional;

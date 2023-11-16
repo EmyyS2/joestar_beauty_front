@@ -138,6 +138,7 @@ const ListagemProfissional = () => {
                                             <td>
                                             <Link to={"/EditarProfissionais/" + Profissional.id} className='btn btn-primary btn-sm'>Editar</Link>
                                             <a onClick={e => handleDelete(Profissional.id)} className='btn btn-danger btn-sm'>Excluir</a>
+                                            <Link to={"/redefinirSenhaProfissional/"} className='btn btn-primary btn-sm'>Redefinir sua senha</Link>
                                             </td>
                                         </tr>
                                     ))}
