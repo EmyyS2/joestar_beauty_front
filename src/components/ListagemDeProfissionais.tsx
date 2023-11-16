@@ -17,7 +17,7 @@ const ListagemProfissional = () => {
     function handleDelete(id: number) {
         const confirm = window.confirm('Você tem certeza que deseja excluir?');
         if (confirm)
-            axios.delete('http://127.0.0.1:8000/api/clientes/delete/' + id)
+            axios.delete('http://127.0.0.1:8000/api/Profissional/delete/' + id)
         .then(function(response){
             window.location.href = "/ListagemDeProfissional"
         }).catch(function(error){

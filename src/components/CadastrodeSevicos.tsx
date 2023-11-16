@@ -29,7 +29,7 @@ const CadastroServico = () => {
                 },
             })
             .then(function (response) {
-               window.location.href = "/ListagemServiço";
+               window.location.href = "/ListagemServico";
             })
             .catch(function (error) {
                 console.log(error);

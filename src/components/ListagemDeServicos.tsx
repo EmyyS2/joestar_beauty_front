@@ -18,7 +18,7 @@ const ListagemDeServico = () => {
         if (confirm)
             axios.delete('http://127.0.0.1:8000/api/servico/delete/' + id)
         .then(function(response){
-            window.location.href = "/ListagemDeServico"
+            window.location.href = "/ListagemServico"
         }).catch(function(error){
             console.log('Ocorreu um erro ao excluir');
         })
