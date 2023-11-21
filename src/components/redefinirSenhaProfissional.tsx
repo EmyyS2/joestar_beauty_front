@@ -6,7 +6,7 @@ import Footer from "./Footer";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-const redefinirProfissional = () => {
+const RedefinirSenhaProfissioanais =()=>{
     const [email, setEmail] = useState<string>("");
 
     const parametros = useParams();
@@ -17,14 +17,14 @@ const redefinirProfissional = () => {
         const dados = {
             email: email
         }
-        axios.post("http://127.0.0.1:8000/api/clientes/senha/redefinir", dados,
+        axios.post("http://127.0.0.1:8000/api/Profissional/senha/redefinir", dados,
             {
                 headers: {
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 }
             }).then(function (response) {
-                window.location.href = "/ListagemDeClientes";
+                window.location.href = "/ListagemDeProfissional";
             }).catch(function (error) {
                 console.log('Ocorreu um erro ao atualizar sua senha');
             });
@@ -34,7 +34,7 @@ const redefinirProfissional = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get("http://127.0.0.1:8000/api/clientes/" + parametros.id);
+                const response = await axios.get("http://127.0.0.1:8000/api/Profissional/visualizar" + parametros.id);
                 setEmail(response.data.data.email);
             } catch (error) {
                 console.log("Erro ao buscar dados da api");
@@ -79,5 +79,4 @@ const redefinirProfissional = () => {
     );
 }
 
-
-export default redefinirProfissional;
+export default RedefinirSenhaProfissioanais

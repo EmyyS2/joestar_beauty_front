@@ -106,15 +106,15 @@ const ListagemProfissional = () => {
                             <table className='table table-hover'>
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                    <th>ID</th>
                                         <th>Nome</th>
-                                        <th>CPF</th>
                                         <th>E-mail</th>
+                                        <th>CPF</th>
                                         <th>Data de Nascimento</th>
-                                    
                                         <th>cep</th>
-                                        <th>complemento</th>
-                                        <th>salario</th>
+                                        <th>Complemento</th>
+                                        <th>Salário</th>
+                                        
                                         
                                         
                                         
@@ -129,16 +129,16 @@ const ListagemProfissional = () => {
                                             <td>{Profissional.email}</td>
                                             <td>{Profissional.cpf}</td>
                                             <td>{Profissional.dataNascimento}</td>
-                                            
                                             <td>{Profissional.cep}</td>
                                             <td>{Profissional.complemento}</td>
                                             <td>{Profissional.salario}</td>
+                                         
                                             
                                             
                                             <td>
                                             <Link to={"/EditarProfissionais/" + Profissional.id} className='btn btn-primary btn-sm'>Editar</Link>
                                             <a onClick={e => handleDelete(Profissional.id)} className='btn btn-danger btn-sm'>Excluir</a>
-                                            <Link to={"/redefinirSenhaProfissional/"} className='btn btn-primary btn-sm'>Redefinir sua senha</Link>
+                                            <Link to={"/redefinirSenhaProfissionais"} className='btn btn-primary btn-sm'>Redefinir sua senha</Link>
                                             </td>
                                         </tr>
                                     ))}

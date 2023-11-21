@@ -145,7 +145,7 @@ const submitForm = (e: ChangeEvent<HTMLInputElement>) => {
                             <form onSubmit={cadastrarUsuario} className='row g-3'>
                                 <div className='col-6'>
                                 <label htmlFor="nome" className='form-label'>Nome</label>
-                                    <input type="text" name='nome' className='form-control' required onChange={handleState} placeholder='ex: Torss' />
+                                    <input type="text" name='nome' className='form-control' required onChange={handleState} placeholder='ex: Maria' />
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="email" className='form-label' >E-mail</label>
@@ -185,7 +185,7 @@ const submitForm = (e: ChangeEvent<HTMLInputElement>) => {
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor="rua" className='form-label'>Rua</label>
-                                    <input type="text" name='rua' className='form-control' required onChange={handleState}placeholder='ex: Joao dragon' />
+                                    <input type="text" name='rua' className='form-control' required onChange={handleState}placeholder='ex: Manaus' />
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor="numero" className='form-label'>Numero</label>
@@ -193,14 +193,14 @@ const submitForm = (e: ChangeEvent<HTMLInputElement>) => {
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor="bairro" className='form-label'>Bairro</label>
-                                    <input type="text" name='bairro' className='form-control' required onChange={handleState} placeholder='ex: renascer' />
+                                    <input type="text" name='bairro' className='form-control' required onChange={handleState} placeholder='ex: Renascer' />
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor="complemento" className='form-label'>Complemento</label>
                                     <input type="text" name='complemento' className='form-control' required onChange={handleState} placeholder='ex: Quinta rua'/>
                                 </div>
                                 <div className='col-6'>
-                                    <label htmlFor="salario" className='form-label'>salario</label>
+                                    <label htmlFor="salario" className='form-label'>Salário</label>
                                     <input type="decimal" name='salario' className='form-control' required onChange={handleState} />
                                 </div>
                                 <div className='col-6'>

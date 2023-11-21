@@ -76,7 +76,7 @@ const submitForm = (e: ChangeEvent<HTMLInputElement>) => {
             headers:
                 { "Accept": "application/json", "Content-Type": "application/json" }
         }).then(function (response) {
-          //window.location.href = "/ListagemDeClientes"
+          window.location.href = "/ListagemDeClientes"
         }).catch(function (error) {
             console.log(error);
         });
