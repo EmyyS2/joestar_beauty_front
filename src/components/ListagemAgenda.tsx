@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from 'react';
-import style from '../template.module.css'
+import styles from '../template.module.css'
 import { CadastroInterfaceAgenda } from '../Interfaces/CadastroAgenda';
 import { Link } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
 
 
 const ListagemAgenda = () => {
@@ -18,29 +20,22 @@ const ListagemAgenda = () => {
         }
     }
 
+    
 //deletando
-
 function handleDelete(id: number) {
     const confirm = window.confirm('Você tem certeza que deseja excluir?');
     if (confirm)
-        axios.delete('http://127.0.0.1:8000/api/agenda/deletar/{id}' + id)
+        axios.delete('http://127.0.0.1:8000/api/delete/agendamento/' + id)
     
     .then(function(response){
        
-        window.location.href = " /ListagemAgenda"
+        window.location.href = " /ListagemDeAgenda"
     }).catch(function(error){
         console.log('Ocorreu um erro ao excluir');
-        console.log(error)
+        console.log(error);
     })
 }
 
-
-
-
-
-
-
-    //Buscar por nome
     const buscar = (e: FormEvent) => {
         e.preventDefault();
 
@@ -73,10 +68,9 @@ function handleDelete(id: number) {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/agenda/visualizar');
+                const response = await axios.get('http://127.0.0.1:8000/api/visualizar/agendamento');
                 if(true == response.data.status){
                     setAgenda(response.data.data)
-                    console.log(agenda)
                 }
             } catch (error) {
                 setError("Ocorreu um erro");
@@ -90,15 +84,14 @@ function handleDelete(id: number) {
     
     return (
         <div>
-            <main className={style.main}>
+            <Header />
+            <main className={styles.main}>
                 <div className='container'>
 
-                    <div className='col-md mb-3'>
+                    <div className='col-md mb-4'>
                         <div className='card'>
                             <div className='card-body'>
-                                <h5 className='card-title'>
-                                    Pesquisar
-                                </h5>
+                                <h5 className='card-title'>Pesquisar</h5>
                                 <form onSubmit={buscar} className='row'>
                                     <div className='col-10'>
                                         <input type="text" name='pesquisa' className='form-control'
@@ -115,34 +108,25 @@ function handleDelete(id: number) {
                     </div>
                     <div className='card'>
                         <div className='card-body'>
-                            <h5 className='card-title'> Listagem de Profissional</h5>
+                            <h5 className='card-title'> Listagem de agendas</h5>
                             <table className='table table-hover'>
                                 <thead>
                                     <tr>
-                                        <th>Profissional ID</th>
+                                        <th>ID</th>
+                                        <th>ID Profissionais</th>
                                         <th>Data e hora</th>
-                                        <th>Ações</th>
-                                       
-                                       
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {agenda.map(agenda => (
                                         <tr key={agenda.id}>
+                                            <td>{agenda.id}</td>
                                             <td>{agenda.profissional_id}</td>
-                                     
                                             <td>{agenda.dataHora}</td>
                                             
-                                            
-                                         
-                                         
-                                           
-                                           
-                                            
-                                            
                                             <td>
-                                            <Link to={"/EditarProfissional/" + agenda.id} className='btn btn-primary btn-sm m-1'>Editar</Link>
-                                            <a onClick={e => handleDelete(agenda.id)} className='btn btn-danger btn-sm' >Excluir</a>
+                                            <Link to={"/EditarAgenda/"+agenda.id} className='btn btn-primary btn-sm'>Editar</Link>
+                                                <a onClick={e => handleDelete(agenda.id)} className='btn btn-danger btn-sm'>Excluir</a>
                                             </td>
                                         </tr>
                                     ))}
@@ -152,7 +136,7 @@ function handleDelete(id: number) {
                     </div>
                 </div>
             </main>
-
+            <Footer />
         </div>
     );
 }

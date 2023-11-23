@@ -1,19 +1,16 @@
 import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from 'react';
-import Header from './Header';
+
 import style from '../template.module.css'
-import Footer from './Footer';
 import axios from 'axios';
+import Header from './Header';
+import FooterAgenda from './Footer';
+
 import { CadastroInterface } from '../Interfaces/CadastroProfissionalInterface';
-
-
-
-
-
 
 
 const CadastroAgenda = () => {
 
-    const [profissional_id, setPrficional_id] = useState<string>("");
+    const [profissional_id, setProfissional_id] = useState<string>("");
     const [dataHora, setDataHora] = useState<string>("");
     const [profissional, setProfissional] = useState<CadastroInterface[]>([]);
 
@@ -21,15 +18,12 @@ const CadastroAgenda = () => {
     const cadastrarAgenda = (e: FormEvent) => {
         e.preventDefault();
 
-
         const dados = {
             profissional_id: profissional_id,
             dataHora: dataHora,
-
-
         }
 
-        axios.post('http://127.0.0.1:8000/api/agenda',
+        axios.post('http://127.0.0.1:8000/api/agendamento',
             dados,
             {
                 headers: {
@@ -38,21 +32,18 @@ const CadastroAgenda = () => {
                 }
             }
         ).then(function (response) {
+            alert('cadastro da Agenda realizado com sucesso')
 
-            alert('cadastro Agenda realizado com sucesso')
-
-
-             window.location.href = "/ListagemAgenda"
+            window.location.href = "/ListagemAgenda"
         }).catch(function (error) {
             console.log(error)
-            
         });
     }
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/Profissional/visualizar');
+                const response = await axios.post('http://127.0.0.1:8000/api/Profissional/nome');
                 if (true == response.data.status) {
                     setProfissional(response.data.data)
                     console.log(profissional);
@@ -70,9 +61,8 @@ const CadastroAgenda = () => {
             setDataHora(e.target.value);
         }
     }
-
     const handleProfissionalSelect = (e: ChangeEvent<HTMLSelectElement>) => {
-        setPrficional_id(e.target.value);
+        setProfissional_id(e.target.value);
     }
 
     return (
@@ -86,7 +76,7 @@ const CadastroAgenda = () => {
                             <h5 className='card-title'>Cadastrar </h5>
                             <form onSubmit={cadastrarAgenda} className='row g-3'>
                                 <div className='col-6'>
-                                    <label htmlFor="nome" className='form-label'>Profcional_Id</label>
+                                    <label htmlFor="nome" className='form-label'>Profissional_Id</label>
                                     <select name='profissional_id' id='profissional_id ' className='form-control' required onChange={handleProfissionalSelect}   >
                                         <option value="0">Selecione um Profissional</option>
                                         {profissional.map(profissional => (
@@ -109,7 +99,7 @@ const CadastroAgenda = () => {
                     </div>
                 </div>
             </main>
-            <Footer />
+            <FooterAgenda />
         </div>
 
     )
