@@ -34,7 +34,7 @@ const RedefinirSenha = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get("http://127.0.0.1:8000/api/clientes/visualizar" + parametros.id);
+                const response = await axios.get("http://127.0.0.1:8000/api/clientes/pesquisar/" + parametros.id);
                 setEmail(response.data.data.email);
             } catch (error) {
                 console.log("Erro ao buscar dados da api");
