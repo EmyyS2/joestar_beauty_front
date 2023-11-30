@@ -1,4 +1,4 @@
-export interface CadastroInterface{
+export interface CadastroProfissionaisInterface{
     id:number;
         nome:string;
         celular:string;

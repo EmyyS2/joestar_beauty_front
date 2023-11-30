@@ -3,14 +3,14 @@ import axios from 'axios';
 import Header from './Header';
 import styles from '../template.module.css'
 import Footer from './Footer';
-import { CadastroInterface } from '../Interfaces/CadastroClienteInterface';
+import { CadastroClientesInterface } from '../Interfaces/CadastroClienteInterface';
 import { Link } from 'react-router-dom';
 
 
 
 const ListagemDeClientes = () => {
 
-    const [clientes, setClientes] = useState<CadastroInterface[]>([]);
+    const [clientes, setClientes] = useState<CadastroClientesInterface[]>([]);
     const [pesquisa, setPesquisa] = useState<string>('');
     const [error, setError] = useState("");
 

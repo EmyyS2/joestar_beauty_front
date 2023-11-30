@@ -3,13 +3,13 @@ import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from 'r
 
 import styles from '../template.module.css'
 
-import { CadastroInterface } from '../Interfaces/CadastroServicos';
+import { CadastroServicoInterface } from '../Interfaces/CadastroServicos';
 import { Link } from 'react-router-dom';
 
 
 const ListagemDeServico = () => {
 
-    const [servicos, setServicos] = useState<CadastroInterface[]>([]);
+    const [servicos, setServicos] = useState<CadastroServicoInterface[]>([]);
     const [pesquisa, setPesquisa] = useState<string>('');
     const [error, setError] = useState("");
 

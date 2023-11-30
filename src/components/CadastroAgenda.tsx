@@ -3,19 +3,26 @@ import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from 'r
 import style from '../template.module.css'
 import axios from 'axios';
 import Header from './Header';
-import FooterAgenda from './Footer';
+import Footer from './Footer';
 
-import { CadastroInterface } from '../Interfaces/CadastroProfissionalInterface';
+import { CadastroProfissionaisInterface } from '../Interfaces/CadastroProfissionalInterface';
 
 
 const CadastroAgenda = () => {
 
     const [profissional_id, setProfissional_id] = useState<string>("");
     const [dataHora, setDataHora] = useState<string>("");
-    const [profissional, setProfissional] = useState<CadastroInterface[]>([]);
+    const [profissional, setProfissional] = useState<CadastroProfissionaisInterface[]>([]);
+    const [profissional_idErro, setProfissional_idErro] = useState<string>("");
+    const [dataHoraErro, setDataHoraErro] = useState<string>("");
+    const [profissionalErro, setProfissionalErro] = useState<CadastroProfissionaisInterface[]>([]);
 
 
     const cadastrarAgenda = (e: FormEvent) => {
+        setProfissional_idErro("")
+        setDataHoraErro("")
+        setProfissionalErro([])
+
         e.preventDefault();
 
         const dados = {
@@ -32,9 +39,19 @@ const CadastroAgenda = () => {
                 }
             }
         ).then(function (response) {
-            alert('cadastro da Agenda realizado com sucesso')
-
+            if(response.data.success === false){
+                if('profissional_id' in response.data.error){
+                    setProfissional_idErro(response.data.error.profissional_id[0])
+                }
+                if('dataHora' in response.data.error){
+                    setDataHoraErro(response.data.error.dataHora[0])
+                }
+                if('profissional_id' in response.data.error){
+                    setProfissionalErro(response.data.error.profissional_id[0])
+                }
+            } else {
             window.location.href = "/ListagemAgenda"
+            }
         }).catch(function (error) {
             console.log(error)
         });
@@ -43,7 +60,7 @@ const CadastroAgenda = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.post('http://127.0.0.1:8000/api/Profissional/nome');
+                const response = await axios.get('http://127.0.0.1:8000/api/Profissional/visualizar');
                 if (true == response.data.status) {
                     setProfissional(response.data.data)
                     console.log(profissional);
@@ -77,7 +94,7 @@ const CadastroAgenda = () => {
                             <form onSubmit={cadastrarAgenda} className='row g-3'>
                                 <div className='col-6'>
                                     <label htmlFor="nome" className='form-label'>Profissional_Id</label>
-                                    <select name='profissional_id' id='profissional_id ' className='form-control' required onChange={handleProfissionalSelect}   >
+                                    <select name='profissional_id' id='profissional_id ' className='form-control' required onChange={handleProfissionalSelect} >
                                         <option value="0">Selecione um Profissional</option>
                                         {profissional.map(profissional => (
                                             <option key={profissional.id} value={profissional.id}>
@@ -85,10 +102,12 @@ const CadastroAgenda = () => {
                                             </option>
                                         ))}
                                     </select>
+                                    <div className='text-danger'>{profissional_idErro}</div>
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="email" className='form-label' >Data e hora</label>
                                     <input type="datetime-local" name='dataHora' className='form-control' required onChange={handleState} />
+                                    <div className='text-danger'>{dataHoraErro}</div>
                                 </div>
 
                                 <div className='col-12'>
@@ -99,7 +118,7 @@ const CadastroAgenda = () => {
                     </div>
                 </div>
             </main>
-            <FooterAgenda />
+            <Footer/>
         </div>
 
     )

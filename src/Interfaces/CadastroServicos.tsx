@@ -1,4 +1,4 @@
-export interface CadastroInterface{
+export interface CadastroServicoInterface{
     id:number,
     nome:string, 
     descricao:string, 

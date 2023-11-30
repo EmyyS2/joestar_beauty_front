@@ -24,9 +24,69 @@ const EditarProfissional = () => {
     const [celular, setCelular] = useState<string>("");
     const [salario, setSalario] = useState<string>("");
 
+    const [nomeError, setNomeError] = useState<string>("");
+    const [celularError, setCelularError] = useState<string>("");
+    const [emailError, setEmailError] = useState<string>("");
+    const [cpfError, setCpfError] = useState<string>("");
+    const [dataNascimentoError, setDataNascimentoError] = useState<string>("")
+    const [cidadeError, setCidadeError] = useState<string>("");
+    const [estadoError, setEstadoError] = useState<string>("");
+    const [paisError, setPaisError] = useState<string>("");
+    const [ruaError, setRuaError] = useState<string>("");
+    const [numeroError, setNumeroError] = useState<string>("");
+    const [bairroError, setBairroError] = useState<string>("");
+    const [cepError, setCepError] = useState<string>("");
+    const [complementoError, setComplementoError] = useState<string>("");
+    const [salarioError, setSalarioError]= useState<string>("");
+    const[erro, setErro]=useState<string>("")
+
+
+    const findCep = (e: FormEvent) => {
+
+        e.preventDefault();
+
+        fetch('https://viacep.com.br/ws/' + cep + '/json/',
+            {
+                method: 'GET'
+            }
+        ).then(response => response.json())
+            .then(
+                data => {
+                    console.log(data);
+
+                    setCidade(data.localidade);
+                    setPais(data.pais);
+                    setEstado(data.uf);
+                    setCep(data.cep);
+
+
+                }
+            ).catch(error => {setErro("Pesquisa invalida")});
+        }
+    
+        const submitForm = (e: ChangeEvent<HTMLInputElement>) => {
+            if(e.target.name === "cep"){
+                setCep(e.target.value);
+            }
+        }
+
     const parametro = useParams();
 
     const atualizar = (e: FormEvent) => {
+        setNomeError("")
+        setCelularError("")
+        setEmailError("")
+        setDataNascimentoError("")
+        setCpfError("")
+        setCidadeError("")
+        setEstadoError("")
+        setPaisError("")
+        setRuaError("")
+        setNumeroError("")
+        setBairroError("")
+        setCepError("")
+        setComplementoError("")
+        setSalarioError("")
         e.preventDefault();
 
         const dados = {
@@ -55,7 +115,53 @@ const EditarProfissional = () => {
                     "Content-Type": "application/json"
                 }
             }).then(function (response) {
+                if (response.data.success === false) {
+                    if ('nome' in response.data.error) {
+                        setNomeError(response.data.error.nome[0])
+                    }
+                    if ('celular' in response.data.error) {
+                        setCelularError(response.data.error.celular[0])
+                    }
+                    if ('email' in response.data.error) {
+                        setEmailError(response.data.error.email[0])
+                    }
+                    if ('cpf' in response.data.error) {
+                        setCpfError(response.data.error.cpf[0])
+                    }
+                    if ('dataNascimento' in response.data.error) {
+                        setDataNascimentoError(response.data.error.dataNascimento[0])
+                    }
+                    if ('cidade' in response.data.error) {
+                        setCidadeError(response.data.error.cidade[0])
+                    }
+                    if ('estado' in response.data.error) {
+                        setEstadoError(response.data.error.estado[0])
+                    }
+                    if ('pais' in response.data.error) {
+                        setPaisError(response.data.error.pais[0])
+                    }
+                    if ('rua' in response.data.error) {
+                        setRuaError(response.data.error.rua[0])
+                    }
+                    if ('numero' in response.data.error) {
+                        setNumeroError(response.data.error.numero[0])
+                    }
+                    if ('bairro' in response.data.error) {
+                        setBairroError(response.data.error.bairro[0])
+                    }
+                    if ('cep' in response.data.error) {
+                        setCepError(response.data.error.cep[0])
+                    }
+                    if ('complemento' in response.data.error) {
+                        setComplementoError(response.data.error.complemento[0])
+                    }
+                    if ('salario' in response.data.error) {
+                        setSalarioError(response.data.error.salario[0])
+                    }
+                   
+                }else{
                 window.location.href = "/ListagemDeProfissional";
+                }
             }).catch(function (error) {
                 console.log('Ocorreu um erro ao atualizar');
             });
@@ -153,59 +259,59 @@ const EditarProfissional = () => {
                             <form onSubmit={atualizar} className='row g-3'>
                                 <div className='col-6'>
                                     <label htmlFor="nome" className='form-label'>Nome</label>
-                                    <input type="text" name='nome' className='form-control' required onChange={handleState} value={nome} />
+                                    <input type="text" name='nome' className='form-control' required onChange={handleState} value={nome} /><div className='text-danger'>{nomeError}</div>
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="email" className='form-label'>E-mail</label>
-                                    <input type="text" name='email' className='form-control' required onChange={handleState} value={email} />
+                                    <input type="text" name='email' className='form-control' required onChange={handleState} value={email} /><div className='text-danger'>{emailError}</div>
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="celular" className='form-label'>Celular</label>
-                                    <input type="text" name='celular' className='form-control' required onChange={handleState} value={celular} />
+                                    <input type="text" name='celular' className='form-control' required onChange={handleState} value={celular} /><div className='text-danger'>{celularError}</div>
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="cpf" className='form-label'>CPF</label>
-                                    <input type="text" name='cpf' className='form-control' required onChange={handleState} value={cpf} />
+                                    <input type="text" name='cpf' className='form-control' required onChange={handleState} value={cpf} /><div className='text-danger'>{cpfError}</div>
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="dataDeNascimento" className='form-label'>Data de nascimento</label>
-                                    <input type="date" name='dataDeNascimento' className='form-control' required onChange={handleState} value={dataNascimento} />
+                                    <input type="date" name='dataDeNascimento' className='form-control' required onChange={handleState} value={dataNascimento} /><div className='text-danger'>{dataNascimentoError}</div>
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="cidade" className='form-label'>Cidade</label>
-                                    <input type="text" name='cidade' className='form-control' required onChange={handleState} value={cidade} />
+                                    <input type="text" name='cidade' className='form-control' required onChange={handleState} value={cidade} /><div className='text-danger'>{cidadeError}</div>
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="estado" className='form-label'>Estado</label>
-                                    <input type="text" name='estado' className='form-control' required onChange={handleState} value={estado} />
+                                    <input type="text" name='estado' className='form-control' required onChange={handleState} value={estado} /><div className='text-danger'>{estadoError}</div>
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="pais" className='form-label'>País</label>
-                                    <input type="text" name='pais' className='form-control' required onChange={handleState} value={pais} />
+                                    <input type="text" name='pais' className='form-control' required onChange={handleState} value={pais} /><div className='text-danger'>{paisError}</div>
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="rua" className='form-label'>Rua</label>
-                                    <input type="text" name='rua' className='form-control' required onChange={handleState} value={rua} />
+                                    <input type="text" name='rua' className='form-control' required onChange={handleState} value={rua} /><div className='text-danger'>{ruaError}</div>
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="numero" className='form-label'>Numero</label>
-                                    <input type="text" name='numero' className='form-control' required onChange={handleState} value={numero} />
+                                    <input type="text" name='numero' className='form-control' required onChange={handleState} value={numero} /><div className='text-danger'>{numeroError}</div>
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="bairro" className='form-label'>Bairro</label>
-                                    <input type="text" name='bairro' className='form-control' required onChange={handleState} value={bairro} />
+                                    <input type="text" name='bairro' className='form-control' required onChange={handleState} value={bairro} /><div className='text-danger'>{bairroError}</div>
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="cep" className='form-label'>CEP</label>
-                                    <input type="text" name='cep' className='form-control' required onChange={handleState} value={cep} />
+                                    <input type="text" name='cep' className='form-control' required onChange={handleState} value={cep} /><div className='text-danger'>{cepError}</div>
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="complemento" className='form-label'>Complemento</label>
-                                    <input type="text" name='complemento' className='form-control' required onChange={handleState} value={complemento} />
+                                    <input type="text" name='complemento' className='form-control' required onChange={handleState} value={complemento} /><div className='text-danger'>{complementoError}</div>
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="salario" className='form-label'>salario</label>
-                                    <input type="decimal" name='salario' className='form-control' required onChange={handleState} value={salario}/>
+                                    <input type="decimal" name='salario' className='form-control' required onChange={handleState} value={salario}/><div className='text-danger'>{salarioError}</div>
                                 </div>
                                 <div className='col-12'>
                                     <button type='submit' className='btn btn-dark btn-sm'>Atualizar</button>

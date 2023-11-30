@@ -11,7 +11,17 @@ const CadastroServico = () => {
     const [duracao, setDuracao] = useState<string>("");
     const [erro, setErro] = useState<string>("");
 
+
+    const [nomeError, setNomeError] = useState<string>("");
+    const [precoError, setPrecoError] = useState<string>("");
+    const [descricaoError, setDescricaoError] = useState<string>("");
+    const [duracaoError, setDuracaoError] = useState<string>("");
+
     const cadastrarServico = (e: FormEvent) => {
+        setNomeError("")
+        setPrecoError("")
+        setDescricaoError("")
+        setDuracaoError("")
         e.preventDefault();
         const dados = {
             nome: nome,
@@ -29,7 +39,23 @@ const CadastroServico = () => {
                 },
             })
             .then(function (response) {
-               window.location.href = "/ListagemServico";
+
+                if (response.data.success === false) {
+                    if ('nome' in response.data.error) {
+                        setNomeError(response.data.error.nome[0])
+                    }
+                    if ('preco' in response.data.error) {
+                        setPrecoError(response.data.error.preco[0])
+                    }
+                    if ('descricao' in response.data.error) {
+                        setDescricaoError(response.data.error.descricao[0])
+                    }
+                    if ('duracao' in response.data.error) {
+                        setDuracaoError(response.data.error.duracao[0])
+                    }
+                } else {
+                    window.location.href = "/ListagemServico";
+                }
             })
             .catch(function (error) {
                 console.log(error);
@@ -70,7 +96,7 @@ const CadastroServico = () => {
                                         className="form-control"
                                         required
                                         onChange={handleState}
-                                    />
+                                    /><div className='text-danger'>{nomeError}</div>
                                 </div>
                                 <div className="col-6">
                                     <label htmlFor="preco" className="form-label">
@@ -82,7 +108,7 @@ const CadastroServico = () => {
                                         className="form-control"
                                         required
                                         onChange={handleState}
-                                    />
+                                    /><div className='text-danger'>{precoError}</div>
                                 </div>
                                 <div className="col-4">
                                     <label htmlFor="descricao" className="form-label">
@@ -94,7 +120,7 @@ const CadastroServico = () => {
                                         className="form-control"
                                         required
                                         onChange={handleState}
-                                    />
+                                    /><div className='text-danger'>{descricaoError}</div>
                                 </div>
                                 <div className="col-4">
                                     <label htmlFor="duracao" className="form-label">
@@ -106,7 +132,7 @@ const CadastroServico = () => {
                                         className="form-control"
                                         required
                                         onChange={handleState}
-                                    />
+                                    /><div className='text-danger'>{duracaoError}</div>
                                 </div>
 
                                 <div className="col-12">
@@ -117,7 +143,7 @@ const CadastroServico = () => {
                             </form>
                         </div>
                     </div>
-                
+
                 </div>
             </main>
         </div>

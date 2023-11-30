@@ -3,13 +3,13 @@ import axios from 'axios';
 import Header from './Header';
 import styles from '../template.module.css'
 import Footer from './Footer';
-import { CadastroInterface } from '../Interfaces/CadastroProfissionalInterface';
+import { CadastroProfissionaisInterface } from '../Interfaces/CadastroProfissionalInterface';
 import { Link } from 'react-router-dom';
 
 
 const ListagemProfissional = () => {
 
-    const [Profissional, setProfissional] = useState<CadastroInterface[]>([]);
+    const [Profissional, setProfissional] = useState<CadastroProfissionaisInterface[]>([]);
     const [pesquisa, setPesquisa] = useState<string>('');
     const [error, setError] = useState("");
 
@@ -19,7 +19,11 @@ const ListagemProfissional = () => {
         if (confirm)
             axios.delete('http://127.0.0.1:8000/api/Profissional/delete/' + id)
         .then(function(response){
+            if (response.data.status === false){
+                alert ('Este profissional ainda têm agendamentos')
+            } else {
             window.location.href = "/ListagemDeProfissional"
+            }
         }).catch(function(error){
             console.log('Ocorreu um erro ao excluir');
         })
