@@ -283,7 +283,7 @@ const CadastroClientes = () => {
                     </div>
                 </div>
             </main>
-
+            <Footer/>
         </div>
     )
 }

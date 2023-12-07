@@ -8,7 +8,8 @@ const Header = () => {
 
             <nav className="navbar navbar-expand-lg navbar-dark navbar-center">
                 <div className="container-fluid">
-                    <a href="#" className="navbar-brand">✩Joestars Beauty✩</a>
+                    <img src="joestrarsLogo.png" width="200" height="60" />
+                
 
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#conteudoNavbar"
                         aria-controls="conteudoNavbar" aria-expanded="false" aria-label="Toggle Navigation">
