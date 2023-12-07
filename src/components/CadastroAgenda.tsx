@@ -29,7 +29,11 @@ const CadastroAgenda = () => {
         const dados = {
             profissional_id: profissional_id,
             dataHora: dataHora,
+            
         }
+        if (new Date(dataHora) < new Date()) {
+            setDataHoraErro("Não é possível cadastrar antes da data e hora atual");
+          }
 
         axios.post('http://127.0.0.1:8000/api/agendamento',
             dados,
@@ -96,7 +100,7 @@ const CadastroAgenda = () => {
                                 <div className='col-6'>
                                     <label htmlFor="nome" className='form-label'>Profissional_Id</label>
                                     <select name='profissional_id' id='profissional_id ' className='form-control' required onChange={handleProfissionalSelect} >{profissional_idErro}
-                                        <option value="0">Selecione um Profissional</option>
+                                        <option value="">Selecione um Profissional</option>
                                         {profissional.map(profissional => (
                                             <option key={profissional.id} value={profissional.id}>
                                                 {profissional.nome}
