@@ -147,7 +147,9 @@ const CadastroDeProfissionais = () => {
                     setCidade(data.localidade);
                     setPais(data.pais);
                     setEstado(data.uf);
-                    setCep(data.cep);
+                    setRua(data.logradouro);
+                    setBairro(data.bairro);
+                    //setCep(data.cep);
 
                 }
              ).catch(error => {setErro("Pesquisa invalida")});
@@ -263,7 +265,7 @@ const CadastroDeProfissionais = () => {
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor="rua" className='form-label'>Rua</label>
-                                    <input type="text" name='rua' className='form-control' required onChange={handleState}placeholder='ex: Manaus' /><div className='text-danger'>{ruaError}</div>
+                                    <input type="text" value={rua} name='logradouro' className='form-control' required onChange={handleState}placeholder='ex: Manaus' /><div className='text-danger'>{ruaError}</div>
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor="numero" className='form-label'>Numero</label>
@@ -271,7 +273,7 @@ const CadastroDeProfissionais = () => {
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor="bairro" className='form-label'>Bairro</label>
-                                    <input type="text" name='bairro' className='form-control' required onChange={handleState} placeholder='ex: Renascer' /><div className='text-danger'>{bairroError}</div>
+                                    <input type="text" value={bairro}name='bairro' className='form-control' required onChange={handleState} placeholder='ex: Renascer' /><div className='text-danger'>{bairroError}</div>
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor="complemento" className='form-label'>Complemento</label>

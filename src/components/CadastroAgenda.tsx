@@ -13,6 +13,7 @@ const CadastroAgenda = () => {
     const [profissional_id, setProfissional_id] = useState<string>("");
     const [dataHora, setDataHora] = useState<string>("");
     const [profissional, setProfissional] = useState<CadastroProfissionaisInterface[]>([]);
+
     const [profissional_idErro, setProfissional_idErro] = useState<string>("");
     const [dataHoraErro, setDataHoraErro] = useState<string>("");
     const [profissionalErro, setProfissionalErro] = useState<CadastroProfissionaisInterface[]>([]);
@@ -94,7 +95,7 @@ const CadastroAgenda = () => {
                             <form onSubmit={cadastrarAgenda} className='row g-3'>
                                 <div className='col-6'>
                                     <label htmlFor="nome" className='form-label'>Profissional_Id</label>
-                                    <select name='profissional_id' id='profissional_id ' className='form-control' required onChange={handleProfissionalSelect} >
+                                    <select name='profissional_id' id='profissional_id ' className='form-control' required onChange={handleProfissionalSelect} >{profissional_idErro}
                                         <option value="0">Selecione um Profissional</option>
                                         {profissional.map(profissional => (
                                             <option key={profissional.id} value={profissional.id}>
@@ -102,7 +103,7 @@ const CadastroAgenda = () => {
                                             </option>
                                         ))}
                                     </select>
-                                    <div className='text-danger'>{profissional_idErro}</div>
+                                    <div className='text-danger'></div>
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="email" className='form-label' >Data e hora</label>

@@ -29,7 +29,7 @@ function handleDelete(id: number) {
     
     .then(function(response){
        
-        window.location.href = " /ListagemDeAgenda"
+        window.location.href = " /ListagemAgenda"
     }).catch(function(error){
         console.log('Ocorreu um erro ao excluir');
         console.log(error);
